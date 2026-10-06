@@ -11,7 +11,7 @@ window.BIRTHDAY = {
   name: "Bubu",
 
   // Romantic line above her name on the envelope
-  envelopeLine: "to the one who holds my whole heart,",
+  envelopeLine: "for my favourite person in the whole world,",
 
   // Names that change on the envelope, one after another — the last one stays
   envelopeNames: ["Bubu", "Betu", "Cutipie", "Nirjala"],

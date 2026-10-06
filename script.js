@@ -55,10 +55,15 @@
     notesGrid.appendChild(b);
   });
 
-  // Photo with friendly placeholder when the file is missing
+  // Photos and videos share the same lists — videos are spotted by file type
+  const isVideo = (f = "") => /\.(mp4|webm|mov|m4v)$/i.test(f);
+  const missing = (file) =>
+    `this.outerHTML='<div class=&quot;ph-empty&quot;><b>♡</b>add ${esc(file)}</div>'`;
   const photoHTML = (file, alt) =>
-    `<img src="${esc(file)}" alt="${esc(alt)}" loading="lazy"
-      onerror="this.outerHTML='<div class=&quot;ph-empty&quot;><b>♡</b>add ${esc(file)}</div>'">`;
+    isVideo(file)
+      ? `<video src="${esc(file)}#t=0.1" muted loop playsinline autoplay preload="metadata" onerror="${missing(file)}"></video>
+         <span class="play-badge" aria-hidden="true">▶</span>`
+      : `<img src="${esc(file)}" alt="${esc(alt)}" loading="lazy" onerror="${missing(file)}">`;
 
   // Gallery
   const gallery = $("#gallery");
@@ -66,7 +71,7 @@
     const f = el("figure", "polaroid reveal");
     f.style.setProperty("--r", `${(i % 2 ? 1 : -1) * (1 + (i * 7) % 4)}deg`);
     f.innerHTML = `<div class="ph">${photoHTML(p.file, p.caption)}</div><figcaption>${esc(p.caption)}</figcaption>`;
-    f.addEventListener("click", () => { openLightbox(i); ensureMusic(); });
+    f.addEventListener("click", () => { openLightbox(i); if (!isVideo(p.file)) ensureMusic(); });
     gallery.appendChild(f);
   });
 
@@ -78,7 +83,9 @@
       <span class="tl-date">${esc(m.date)}</span>
       <h3>${esc(m.title)}</h3>
       <p>${esc(m.text)}</p>
-      ${m.photo ? `<img src="${esc(m.photo)}" alt="${esc(m.title)}" loading="lazy" onerror="this.remove()">` : ""}
+      ${!m.photo ? "" : isVideo(m.photo)
+        ? `<video src="${esc(m.photo)}" controls playsinline preload="metadata" onerror="this.remove()"></video>`
+        : `<img src="${esc(m.photo)}" alt="${esc(m.title)}" loading="lazy" onerror="this.remove()">`}
     </div>`;
     tl.appendChild(li);
   });
@@ -144,8 +151,9 @@
     if (current && !audio.paused) fade(0, 600, load);
     else load();
   }
+  let videoPlaying = false, musicBeforeVideo = false;
   function ensureMusic() {
-    if (!started || userPaused || !audio.paused) return;
+    if (!started || userPaused || videoPlaying || !audio.paused) return;
     audio.play().catch(() => {});
   }
 
@@ -263,18 +271,50 @@
   // ---------- Lightbox ----------
   let lbIndex = 0;
   const box = $("#lightbox");
+  const lbImg = $("#lbImg"), lbVid = $("#lbVid");
   function openLightbox(i) {
     lbIndex = (i + C.photos.length) % C.photos.length;
     const p = C.photos[lbIndex];
-    $("#lbImg").src = p.file;
-    $("#lbImg").alt = p.caption;
+    const vid = isVideo(p.file);
+    lbVid.pause();
+    lbImg.hidden = vid;
+    lbVid.hidden = !vid;
+    if (vid) {
+      lbVid.src = p.file;
+      lbVid.play().catch(() => {});
+    } else {
+      lbVid.removeAttribute("src");
+      lbImg.src = p.file;
+      lbImg.alt = p.caption;
+    }
     $("#lbCap").textContent = p.caption;
     box.hidden = false;
   }
-  $("#lbClose").onclick = () => (box.hidden = true);
+  function closeLightbox() {
+    box.hidden = true;
+    lbVid.pause();
+  }
+  // Pause the song while a video plays with sound, then bring it back
+  lbVid.addEventListener("play", () => {
+    if (!videoPlaying) musicBeforeVideo = !audio.paused;
+    videoPlaying = true;
+    audio.pause();
+  });
+  const videoStopped = () => {
+    if (!videoPlaying) return;
+    videoPlaying = false;
+    if (musicBeforeVideo && !userPaused) audio.play().catch(() => {});
+  };
+  lbVid.addEventListener("pause", videoStopped);
+  lbVid.addEventListener("ended", videoStopped);
+  document.querySelectorAll(".tl-card video").forEach((v) => {
+    v.addEventListener("play", () => lbVid.dispatchEvent(new Event("play")));
+    v.addEventListener("pause", videoStopped);
+  });
+  $("#lbClose").onclick = closeLightbox;
   $("#lbPrev").onclick = (e) => { e.stopPropagation(); openLightbox(lbIndex - 1); };
   $("#lbNext").onclick = (e) => { e.stopPropagation(); openLightbox(lbIndex + 1); };
-  box.addEventListener("click", (e) => { if (e.target === box) box.hidden = true; });
+  box.addEventListener("click", (e) => { if (e.target === box) closeLightbox(); });
   document.addEventListener("keydown", (e) => {
     if (box.hidden) {
       if (page < 0) return;
@@ -282,7 +322,7 @@
       if (e.key === "ArrowLeft") go(page - 1);
       return;
     }
-    if (e.key === "Escape") box.hidden = true;
+    if (e.key === "Escape") closeLightbox();
     if (e.key === "ArrowLeft") openLightbox(lbIndex - 1);
     if (e.key === "ArrowRight") openLightbox(lbIndex + 1);
   });

@@ -42,8 +42,10 @@ window.BIRTHDAY = {
     { front: "For later", back: "Save this one for the next time we fight: I'm sorry, I love you, let's get food. 🍕" },
   ],
 
-  // ---------- Photo gallery ----------
-  // file = name of the photo inside the /photos folder
+  // ---------- Photo & video gallery ----------
+  // file = name of the photo OR video inside the /photos folder.
+  // Videos work too — just use the video's name, e.g. "photos/dance.mp4"
+  // (use .mp4 so it plays on every phone; keep each video under ~50 MB).
   photos: [
     { file: "photos/1.jpg", caption: "Our first picture together" },
     { file: "photos/2.jpg", caption: "That trip we'll never forget" },
@@ -54,7 +56,7 @@ window.BIRTHDAY = {
   ],
 
   // ---------- Memories timeline ----------
-  // photo is optional — delete the line if you don't want one
+  // photo is optional (it can also be a video, e.g. "photos/clip.mp4") — delete it if you don't want one
   memories: [
     { date: "The day we met", title: "Hello, you", text: "I still remember what you were wearing and how I couldn't stop looking at you.", photo: "photos/1.jpg" },
     { date: "Our first date", title: "Nervous & happy", text: "I practised what to say for an hour and then forgot all of it the second I saw you." },

@@ -61,12 +61,13 @@ window.BIRTHDAY = {
   // Videos work too — just use the video's name, e.g. "photos/dance.mp4"
   // (use .mp4 so it plays on every phone; keep each video under ~50 MB).
   photos: [
-    { file: "photos/1.jpg", caption: "Our first picture together" },
-    { file: "photos/2.jpg", caption: "That trip we'll never forget" },
-    { file: "photos/3.jpg", caption: "You, being cute as always" },
-    { file: "photos/4.jpg", caption: "Late night drives" },
-    { file: "photos/5.jpg", caption: "My favourite smile" },
-    { file: "photos/6.jpg", caption: "Us 💕" },
+    { file: "photos/1.jpg", caption: "My girl at Victoria Memorial 🤍" },
+    { file: "photos/2.jpg", caption: "Main character energy ✨" },
+    { file: "photos/3.jpg", caption: "Two beautiful views, one frame" },
+    { file: "photos/4.jpg", caption: "Mirror selfie queen 📸" },
+    { file: "photos/5.jpg", caption: "Kolkata looked good, you looked better" },
+    { file: "photos/6.jpg", caption: "Red looks so good on you ❤️" },
+    { file: "photos/7.jpg", caption: "Hair flip, heart skip 💓" },
   ],
 
   // ---------- Memories timeline ----------

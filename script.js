@@ -16,6 +16,7 @@
   $("#fromName").textContent = C.from;
 
   // Envelope: cycle through her nicknames, settle on the last one
+  $("#introLine").textContent = C.envelopeLine || "for";
   const introName = $("#introName");
   const names = C.envelopeNames && C.envelopeNames.length ? C.envelopeNames : [C.name];
   introName.textContent = names[0];

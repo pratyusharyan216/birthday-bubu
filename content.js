@@ -10,9 +10,6 @@ window.BIRTHDAY = {
   // Her name (or what you call her)
   name: "Bubu",
 
-  // The line at the bottom of every slide — tapping it goes to the next slide
-  princessLine: "Happiest Birthday, My Princess",
-
   // Romantic line above her name on the envelope
   envelopeLine: "for my favourite person in the whole world,",
 

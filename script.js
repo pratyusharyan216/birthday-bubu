@@ -16,7 +16,6 @@
   $("#fromName").textContent = C.from;
 
   // Envelope: cycle through her nicknames, settle on the last one
-  $("#princessText").textContent = C.princessLine || "Happiest Birthday, My Princess";
   $("#introLine").textContent = C.envelopeLine || "for";
   const introName = $("#introName");
   const names = C.envelopeNames && C.envelopeNames.length ? C.envelopeNames : [C.name];
@@ -267,10 +266,7 @@
     });
     [...dots.children].forEach((d, j) => d.classList.toggle("on", j === i));
     $("#prevBtn").disabled = i === 0;
-    const pr = $("#nextBtn");
-    pr.classList.remove("pop");
-    void pr.offsetWidth;
-    pr.classList.add("pop");
+    $("#nextLabel").textContent = pg.dataset.next || "Next";
     switchTo(pg.dataset.song || "main");
   }
 

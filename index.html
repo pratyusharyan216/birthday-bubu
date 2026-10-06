@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday 💖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Floating hearts background -->
+  <div class="hearts" aria-hidden="true"></div>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <!-- Envelope intro -->
+  <div id="intro" class="intro">
+    <button class="envelope" id="openBtn" aria-label="Open your surprise">
+      <span class="env-back"></span>
+      <span class="env-letter"><span class="for">for</span><span class="intro-name" data-name></span></span>
+      <span class="env-front"></span>
+      <span class="env-flap"></span>
+      <span class="seal">💌</span>
+    </button>
+    <p class="intro-hint">tap to open</p>
+  </div>
+
+  <main id="site" class="site" hidden>
+    <!-- Page 1: Hero -->
+    <section class="page" data-next="Open your notes">
+      <div class="hero">
+        <p class="eyebrow reveal">today is all about you</p>
+        <h1 class="reveal">Happy Birthday,<br /><em data-name></em></h1>
+        <p class="tagline reveal" id="tagline"></p>
+        <div class="countdown reveal" id="countdown" hidden>
+          <div class="cd-units" id="cdUnits">
+            <div><span id="cdD">0</span><small>days</small></div>
+            <div><span id="cdH">0</span><small>hours</small></div>
+            <div><span id="cdM">0</span><small>mins</small></div>
+            <div><span id="cdS">0</span><small>secs</small></div>
+          </div>
+          <p class="cd-label" id="cdLabel"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Page 2: Notes -->
+    <section class="page" data-song="notes" data-next="See our pictures">
+      <div class="section">
+        <h2 class="reveal">Little notes for you</h2>
+        <p class="section-sub reveal">Tap each one to open it</p>
+        <div class="notes" id="notesGrid"></div>
+      </div>
+    </section>
+
+    <!-- Page 3: Gallery -->
+    <section class="page" data-song="photos" data-next="Our memories">
+      <div class="section">
+        <h2 class="reveal">Us, in pictures</h2>
+        <p class="section-sub reveal">Tap a photo to see it bigger</p>
+        <div class="gallery" id="gallery"></div>
+      </div>
+    </section>
+
+    <!-- Page 4: Timeline -->
+    <section class="page" data-next="A letter for you">
+      <div class="section">
+        <h2 class="reveal">Our memories</h2>
+        <p class="section-sub reveal">A few of my favourite chapters</p>
+        <ol class="timeline" id="timeline"></ol>
+      </div>
+    </section>
+
+    <!-- Page 5: Letter -->
+    <section class="page" data-next="One last thing">
+      <div class="section">
+        <article class="letter reveal" id="letter">
+          <div id="letterBody"></div>
+          <p class="signoff">Forever yours,<br /><span id="fromName"></span></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Page 6: Cake -->
+    <section class="page" data-next="From the beginning">
+      <div class="section cake-section">
+        <h2 class="reveal">Make a wish</h2>
+        <p class="section-sub reveal" id="cakeHint">Close your eyes, make a wish, then tap the candles</p>
+        <button class="cake reveal" id="cake" aria-label="Blow out the candles">
+          <span class="candles">
+            <span class="candle"><span class="flame"></span></span>
+            <span class="candle"><span class="flame"></span></span>
+            <span class="candle"><span class="flame"></span></span>
+          </span>
+          <span class="tier tier-top"></span>
+          <span class="tier tier-bottom"></span>
+          <span class="plate"></span>
+        </button>
+        <p class="wish-msg" id="wishMsg" hidden></p>
+        <footer class="footer reveal">made with all my love, just for <span data-name></span> 💖</footer>
+      </div>
+    </section>
+  </main>
+
+  <!-- Page navigation -->
+  <nav class="pager" id="pager" hidden>
+    <button class="pg-back" id="prevBtn" aria-label="Previous page">‹</button>
+    <div class="dots" id="dots"></div>
+    <button class="pg-next" id="nextBtn"><span id="nextLabel">Next</span> <span class="pg-heart">♥</span></button>
+  </nav>
+
+  <!-- Heart transition -->
+  <div class="wipe" id="wipe" aria-hidden="true">
+    <svg class="wipe-heart" viewBox="0 0 100 92"><path d="M50 90 C20 68 0 50 0 27 C0 11 12 0 27 0 C37 0 45 6 50 14 C55 6 63 0 73 0 C88 0 100 11 100 27 C100 50 80 68 50 90 Z"/></svg>
+  </div>
+  <div class="burst" id="burst" aria-hidden="true"></div>
+
+  <!-- Music player -->
+  <div class="player" id="player" hidden>
+    <button class="vinyl" id="playBtn" aria-label="Play / pause music">
+      <span class="vinyl-icon" id="playIcon">❚❚</span>
+    </button>
+    <div class="track">
+      <span class="track-title" id="trackTitle"></span>
+      <span class="track-artist" id="trackArtist"></span>
+    </div>
+  </div>
+  <audio id="audio" loop preload="auto"></audio>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lb-close" id="lbClose" aria-label="Close">×</button>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+    <figure>
+      <img id="lbImg" alt="" />
+      <figcaption id="lbCap"></figcaption>
+    </figure>
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Next">›</button>
+  </div>
+
+  <script src="content.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

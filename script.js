@@ -266,7 +266,7 @@
     });
     [...dots.children].forEach((d, j) => d.classList.toggle("on", j === i));
     $("#prevBtn").disabled = i === 0;
-    $("#nextLabel").textContent = pg.dataset.next || "Next";
+    $("#nextLabel").textContent = C.princessLine || "Happiest Birthday, My Princess";
     switchTo(pg.dataset.song || "main");
   }
 

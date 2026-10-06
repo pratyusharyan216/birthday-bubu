@@ -376,34 +376,53 @@ h2 {
 
 /* ---------- Pager ---------- */
 .pager {
-  position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 45;
-  display: flex; align-items: center; gap: 14px;
-  background: rgba(255,255,255,0.85); backdrop-filter: blur(10px);
-  padding: 8px 8px 8px 10px; border-radius: 999px; box-shadow: var(--shadow);
-  max-width: calc(100vw - 32px);
+  position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 45;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  width: max-content; max-width: calc(100vw - 24px);
 }
+.princess {
+  position: relative; display: flex; align-items: center; gap: 10px;
+  padding: 8px 26px 10px; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 28px rgba(184, 50, 90, 0.28), inset 0 0 0 1.5px rgba(232, 182, 92, 0.55);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: glow 2.4s ease-in-out infinite;
+}
+.princess:hover { transform: translateY(-3px) scale(1.02); }
+.princess:active { transform: scale(0.97); }
+.princess.pop { animation: prPop 0.9s cubic-bezier(.3,1.5,.5,1) both, glow 2.4s ease-in-out 0.9s infinite; }
+@keyframes prPop {
+  0% { opacity: 0; transform: translateY(20px) scale(0.85); filter: blur(4px); }
+  100% { opacity: 1; transform: none; filter: none; }
+}
+@keyframes glow {
+  0%, 100% { box-shadow: 0 8px 28px rgba(184, 50, 90, 0.28), inset 0 0 0 1.5px rgba(232, 182, 92, 0.55); }
+  50% { box-shadow: 0 8px 34px rgba(224, 90, 122, 0.5), 0 0 0 6px rgba(247, 198, 208, 0.35), inset 0 0 0 1.5px rgba(232, 182, 92, 0.9); }
+}
+.pr-text {
+  font-family: "Great Vibes", cursive; font-size: clamp(1.2rem, 5.2vw, 2.3rem); line-height: 1.15;
+  white-space: nowrap; padding: 0 0.12em;
+  background: linear-gradient(100deg, #b8325a 0%, #e05a7a 28%, #f6c47a 45%, #fff4e0 50%, #f6c47a 56%, #e05a7a 74%, #b8325a 100%);
+  background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+.crown { font-size: 1.25rem; display: inline-block; animation: crownBob 2.4s ease-in-out infinite; }
+@keyframes crownBob { 50% { transform: translateY(-3px) rotate(-8deg); } }
+.pr-arrow { font-size: 1.5rem; color: var(--rose); line-height: 1; animation: nudge 1.4s ease-in-out infinite; }
+@keyframes nudge { 50% { transform: translateX(4px); } }
+
+.pager-row { display: flex; align-items: center; gap: 10px; }
 .pg-back {
-  width: 42px; height: 42px; border-radius: 50%; font-size: 1.6rem; line-height: 1;
-  color: var(--rose-deep); transition: background 0.2s, opacity 0.3s;
+  width: 28px; height: 28px; border-radius: 50%; font-size: 1.2rem; line-height: 1;
+  color: var(--rose-deep); background: rgba(255,255,255,0.7); transition: opacity 0.3s;
 }
-.pg-back:hover { background: var(--bg-2); }
-.pg-back:disabled { opacity: 0.25; cursor: default; }
-.dots { display: flex; gap: 7px; }
+.pg-back:disabled { opacity: 0; pointer-events: none; }
+.dots { display: flex; gap: 6px; }
 .dots button {
-  width: 8px; height: 8px; border-radius: 50%; background: var(--blush);
+  width: 7px; height: 7px; border-radius: 50%; background: var(--blush);
   transition: width 0.4s ease, background 0.4s;
 }
-.dots button.on { width: 24px; border-radius: 6px; background: var(--rose); }
-.pg-next {
-  display: flex; align-items: center; gap: 8px; white-space: nowrap;
-  background: linear-gradient(135deg, var(--rose), var(--rose-deep)); color: #fff;
-  padding: 12px 22px; border-radius: 999px; font-weight: 500;
-  box-shadow: 0 6px 18px rgba(184, 50, 90, 0.4);
-  transition: transform 0.2s ease, box-shadow 0.2s;
-}
-.pg-next:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(184, 50, 90, 0.5); }
-.pg-heart { display: inline-block; animation: beat 1.2s ease-in-out infinite; }
-@keyframes beat { 0%, 100% { transform: scale(1); } 15% { transform: scale(1.35); } 30% { transform: scale(1); } 45% { transform: scale(1.2); } }
+.dots button.on { width: 20px; border-radius: 6px; background: var(--rose); }
 
 /* ---------- Heart wipe transition ---------- */
 .wipe {
@@ -450,8 +469,8 @@ h2 {
   .letter p { font-size: 1.45rem; }
   .lb-nav { position: absolute; bottom: 20px; }
   .lb-prev { left: 20px; } .lb-next { right: 20px; }
-  .pager { bottom: 14px; gap: 10px; }
-  .pg-next { padding: 11px 16px; font-size: 0.92rem; }
+  .princess { padding: 6px 16px 8px; gap: 6px; }
+  .crown { font-size: 1rem; }
   .player { padding-right: 8px; }
   .player .track { display: none; }
 }

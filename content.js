@@ -10,6 +10,20 @@ window.BIRTHDAY = {
   // Her name (or what you call her)
   name: "Bubu",
 
+  // Her real name — gets its own fancy slide
+  fullName: "Nirjala",
+  nameLine: "the most beautiful name I know",
+  // One word/line for each letter of her name (N-I-R-J-A-L-A)
+  nameLetters: [
+    "Naturally beautiful",
+    "Irreplaceable",
+    "Radiant, always",
+    "Joy of my life",
+    "Adorable",
+    "Lovely, inside and out",
+    "All mine 💕",
+  ],
+
   // Your name, for signing the letter
   from: "Pratyush",
 

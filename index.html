@@ -6,7 +6,7 @@
   <title>Happy Birthday 💖</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Great+Vibes&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -28,7 +28,7 @@
 
   <main id="site" class="site" hidden>
     <!-- Page 1: Hero -->
-    <section class="page" data-next="Open your notes">
+    <section class="page" data-next="Something about you">
       <div class="hero">
         <p class="eyebrow reveal">today is all about you</p>
         <h1 class="reveal">Happy Birthday,<br /><em data-name></em></h1>
@@ -42,6 +42,20 @@
           </div>
           <p class="cd-label" id="cdLabel"></p>
         </div>
+      </div>
+    </section>
+
+    <!-- Name page -->
+    <section class="page name-page" data-next="Open your notes">
+      <div class="name-stage">
+        <div class="name-sparkles" id="nameSparkles" aria-hidden="true"></div>
+        <p class="name-line reveal" id="nameLine"></p>
+        <h2 class="name-word" id="nameWord"></h2>
+        <svg class="name-flourish" viewBox="0 0 400 40" aria-hidden="true">
+          <path d="M10 22 C 80 2, 140 38, 200 20 S 320 2, 390 22" />
+          <path class="heart-dot" d="M200 30 c-4 -4 -8 -6 -8 -10 a4 4 0 0 1 8 -1 a4 4 0 0 1 8 1 c0 4 -4 6 -8 10z" />
+        </svg>
+        <ul class="acrostic" id="acrostic"></ul>
       </div>
     </section>
 

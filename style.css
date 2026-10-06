@@ -135,6 +135,68 @@ h2 {
 .countdown.today .cd-label { font-size: 2rem; color: var(--rose-deep); }
 @media (max-width: 400px) { .cd-units div { width: 64px; } .cd-units span { font-size: 1.6rem; } }
 
+/* ---------- Name page ---------- */
+.name-page { background: radial-gradient(ellipse at center, rgba(255, 214, 224, 0.55) 0%, transparent 65%); }
+.name-stage {
+  position: relative; min-height: 100%; padding: 80px 16px 140px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+}
+.name-line { font-family: var(--hand); font-size: 1.6rem; color: var(--ink-soft); letter-spacing: 0.02em; }
+.name-word {
+  font-family: "Great Vibes", cursive; font-weight: 400; line-height: 1.15;
+  font-size: clamp(4.5rem, min(21vw, 17vh), 11rem); margin: 6px 0 0; white-space: nowrap;
+  filter: drop-shadow(0 6px 24px rgba(224, 90, 122, 0.35));
+}
+.nm-letter {
+  display: inline-block; padding: 0 0.12em; margin: 0 -0.12em;
+  background: linear-gradient(100deg, #b8325a 0%, #e05a7a 25%, #f6c47a 42%, #fff4e0 50%, #f6c47a 58%, #e05a7a 75%, #b8325a 100%);
+  background-size: 300% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  opacity: 0;
+}
+.page.active .nm-letter {
+  animation:
+    letterIn 1s cubic-bezier(.2,.9,.25,1.2) calc(0.4s + var(--i) * 0.16s) forwards,
+    shimmer 4s linear calc(1.6s + var(--i) * 0.08s) infinite;
+}
+@keyframes letterIn {
+  0%   { opacity: 0; transform: translateY(-60px) rotate(-14deg) scale(1.6); filter: blur(10px); }
+  60%  { opacity: 1; filter: blur(0); }
+  100% { opacity: 1; transform: none; filter: none; }
+}
+@keyframes shimmer { from { background-position: 100% 0; } to { background-position: -200% 0; } }
+
+.name-flourish { width: min(420px, 80vw); height: 44px; margin-top: -6px; overflow: visible; }
+.name-flourish path {
+  fill: none; stroke: var(--rose); stroke-width: 2.2; stroke-linecap: round;
+  stroke-dasharray: 460; stroke-dashoffset: 460;
+}
+.name-flourish .heart-dot { fill: var(--rose); stroke: none; opacity: 0; transform-origin: 200px 24px; }
+.page.active .name-flourish path { animation: draw 1.6s ease 1.6s forwards; }
+.page.active .name-flourish .heart-dot { animation: pop 0.6s cubic-bezier(.3,1.6,.5,1) 3s forwards, beat 1.4s ease-in-out 3.6s infinite; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes pop { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: scale(1); } }
+
+.acrostic { list-style: none; margin-top: 22px; display: grid; gap: 4px; text-align: left; }
+.acrostic li.reveal.in { transition-delay: calc(2.8s + var(--k) * 0.2s) !important; }
+.acrostic li { display: flex; align-items: baseline; gap: 14px; }
+.acrostic b {
+  font-family: "Great Vibes", cursive; font-weight: 400; font-size: 2.4rem; line-height: 1;
+  width: 1.1em; text-align: center; color: var(--rose-deep);
+}
+.acrostic span { font-family: var(--display); font-style: italic; font-size: 1.15rem; color: var(--ink); }
+
+.name-sparkles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.name-sparkles span {
+  position: absolute; color: var(--gold); opacity: 0;
+  text-shadow: 0 0 10px rgba(246, 196, 122, 0.9);
+}
+.page.active .name-sparkles span { animation: twinkle var(--d) ease-in-out var(--delay) infinite; }
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.3) rotate(0); }
+  50% { opacity: 1; transform: scale(1) rotate(90deg); }
+}
+
 /* ---------- Notes ---------- */
 .notes { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; }
 .note { perspective: 1000px; height: 230px; text-align: left; }

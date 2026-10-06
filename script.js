@@ -42,6 +42,40 @@
     tickCd();
   }
 
+  // Name page
+  if (C.fullName) {
+    $("#nameLine").textContent = C.nameLine || "";
+    const word = $("#nameWord");
+    word.setAttribute("aria-label", C.fullName);
+    [...C.fullName].forEach((ch, i) => {
+      const l = el("span", "nm-letter", esc(ch));
+      l.style.setProperty("--i", i);
+      l.setAttribute("aria-hidden", "true");
+      word.appendChild(l);
+    });
+    const ac = $("#acrostic");
+    [...C.fullName].forEach((ch, i) => {
+      const line = (C.nameLetters || [])[i];
+      if (!line) return;
+      const li = el("li", "reveal", `<b>${esc(ch.toUpperCase())}</b><span>${esc(line)}</span>`);
+      li.style.setProperty("--k", i);
+      ac.appendChild(li);
+    });
+    const sp = $("#nameSparkles");
+    for (let i = 0; i < 26; i++) {
+      const s = el("span", null, i % 3 ? "✦" : "♥");
+      s.style.left = Math.random() * 100 + "%";
+      s.style.top = Math.random() * 100 + "%";
+      s.style.fontSize = 8 + Math.random() * 16 + "px";
+      s.style.setProperty("--d", 2 + Math.random() * 3 + "s");
+      s.style.setProperty("--delay", Math.random() * 3 + "s");
+      if (i % 3 === 0) s.style.color = "var(--rose)";
+      sp.appendChild(s);
+    }
+  } else {
+    document.querySelector(".name-page").remove();
+  }
+
   // Notes
   const notesGrid = $("#notesGrid");
   C.notes.forEach((n) => {

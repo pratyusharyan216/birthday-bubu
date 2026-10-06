@@ -66,8 +66,26 @@ img { display: block; max-width: 100%; }
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   transition: transform 0.8s cubic-bezier(.5,-0.2,.3,1.3) 0.35s;
 }
-.env-letter .for { font-family: var(--hand); font-size: 1.3rem; color: var(--ink-soft); }
-.intro-name { font-family: var(--display); font-style: italic; font-size: 2rem; color: var(--rose-deep); }
+.env-heart { font-size: 2.4rem; color: var(--rose); }
+.intro-title { display: flex; flex-direction: column; align-items: center; min-height: 140px; justify-content: flex-end; }
+.intro-title .for { font-family: var(--hand); font-size: 1.5rem; color: var(--ink-soft); }
+.intro-name {
+  font-family: var(--display); font-style: italic; font-size: 3rem; color: var(--rose-deep); line-height: 1.2;
+  display: inline-block; position: relative; transition: opacity 0.45s ease, transform 0.45s ease, filter 0.45s ease;
+}
+.intro-name.swap-out { opacity: 0; transform: translateY(-12px) scale(0.9); filter: blur(6px); }
+.intro-name.final {
+  font-family: "Great Vibes", cursive; font-style: normal; font-size: 4.6rem; line-height: 1.1;
+  padding: 0 0.15em;
+  background: linear-gradient(100deg, #b8325a 0%, #e05a7a 30%, #f6c47a 48%, #fff4e0 52%, #f6c47a 58%, #e05a7a 75%, #b8325a 100%);
+  background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: nameLand 0.7s cubic-bezier(.3,1.5,.5,1) both, shimmer 4s linear 0.7s infinite;
+}
+.intro-name.final::after {
+  content: "✦"; position: absolute; right: -6px; top: 6px; font-size: 1.4rem; color: var(--gold);
+  -webkit-text-fill-color: var(--gold); animation: twinkle 1.8s ease-in-out infinite;
+}
+@keyframes nameLand { from { opacity: 0; transform: scale(0.6); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
 .env-front {
   background:
     linear-gradient(to top right, var(--rose) 50%, transparent 50.5%) left / 50.5% 100% no-repeat,

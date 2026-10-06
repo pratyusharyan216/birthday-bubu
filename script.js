@@ -15,6 +15,21 @@
   $("#tagline").textContent = C.tagline;
   $("#fromName").textContent = C.from;
 
+  // Envelope: cycle through her nicknames, settle on the last one
+  const introName = $("#introName");
+  const names = C.envelopeNames && C.envelopeNames.length ? C.envelopeNames : [C.name];
+  introName.textContent = names[0];
+  names.slice(1).forEach((n, k) => {
+    setTimeout(() => {
+      introName.classList.add("swap-out");
+      setTimeout(() => {
+        introName.textContent = n;
+        introName.classList.remove("swap-out");
+        if (k === names.length - 2) introName.classList.add("final");
+      }, 450);
+    }, 1400 * (k + 1));
+  });
+
   // Birthday countdown
   const [by, bm, bd] = (C.birthday || "").split("-").map(Number);
   if (by) {

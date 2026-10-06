@@ -10,6 +10,9 @@ window.BIRTHDAY = {
   // Her name (or what you call her)
   name: "Bubu",
 
+  // Names that change on the envelope, one after another — the last one stays
+  envelopeNames: ["Bubu", "Betu", "Cutipie", "Nirjala"],
+
   // Her real name — gets its own fancy slide
   fullName: "Nirjala",
   nameLine: "the most beautiful name I know",

@@ -56,6 +56,8 @@ window.BIRTHDAY = {
   tagline: "To the girl who makes every ordinary day feel like a celebration.",
 
   // ---------- Little notes (she taps each one to open it) ----------
+  notesTitle: "Whispers from my heart",
+  notesSubtitle: "Folded with love, sealed with a kiss — open them one by one 💌",
   notes: [
     { front: "Open when you need a smile", back: "Remember the way you laughed so hard you snorted? I think about it every time I'm having a bad day. You're my favourite sound." },
     { front: "Things I love about you", back: "Your kindness. The way you scrunch your nose. How you always save me the last bite. Literally everything." },

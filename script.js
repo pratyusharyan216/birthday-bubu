@@ -93,6 +93,8 @@
   }
 
   // Notes
+  $("#notesTitle").textContent = C.notesTitle || "Little notes for you";
+  $("#notesSub").textContent = C.notesSubtitle || "Tap each one to open it";
   const notesGrid = $("#notesGrid");
   C.notes.forEach((n) => {
     const b = el("button", "note reveal");

@@ -7,9 +7,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Great+Vibes&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=1791360297" />
+  <link rel="stylesheet" href="style.css?v=1791360434" />
 </head>
 <body>
+  <!-- Floating hearts background -->
+  <div class="hearts" aria-hidden="true"></div>
+  <canvas id="confetti" aria-hidden="true"></canvas>
 
   <!-- Envelope intro -->
   <div id="intro" class="intro">
@@ -49,6 +52,7 @@
     <!-- Name page -->
     <section class="page name-page">
       <div class="name-stage">
+        <div class="name-sparkles" id="nameSparkles" aria-hidden="true"></div>
         <p class="name-line reveal" id="nameLine"></p>
         <h2 class="name-word" id="nameWord"></h2>
         <svg class="name-flourish" viewBox="0 0 400 40" aria-hidden="true">
@@ -148,7 +152,7 @@
     <button class="lb-nav lb-next" id="lbNext" aria-label="Next">›</button>
   </div>
 
-  <script src="content.js?v=1791360297"></script>
-  <script src="script.js?v=1791360297"></script>
+  <script src="content.js?v=1791360434"></script>
+  <script src="script.js?v=1791360434"></script>
 </body>
 </html>

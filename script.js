@@ -22,8 +22,12 @@
   introName.textContent = names[0];
   names.slice(1).forEach((n, k) => {
     setTimeout(() => {
-      introName.textContent = n;
-      if (k === names.length - 2) introName.classList.add("final");
+      introName.classList.add("swap-out");
+      setTimeout(() => {
+        introName.textContent = n;
+        introName.classList.remove("swap-out");
+        if (k === names.length - 2) introName.classList.add("final");
+      }, 450);
     }, 1400 * (k + 1));
   });
 
@@ -73,6 +77,17 @@
       li.style.setProperty("--k", i);
       ac.appendChild(li);
     });
+    const sp = $("#nameSparkles");
+    for (let i = 0; i < 26; i++) {
+      const s = el("span", null, i % 3 ? "✦" : "♥");
+      s.style.left = Math.random() * 100 + "%";
+      s.style.top = Math.random() * 100 + "%";
+      s.style.fontSize = 8 + Math.random() * 16 + "px";
+      s.style.setProperty("--d", 2 + Math.random() * 3 + "s");
+      s.style.setProperty("--delay", Math.random() * 3 + "s");
+      if (i % 3 === 0) s.style.color = "var(--rose)";
+      sp.appendChild(s);
+    }
   } else {
     document.querySelector(".name-page").remove();
   }
@@ -128,6 +143,18 @@
   // Letter
   const lb = $("#letterBody");
   C.letter.forEach((para) => lb.appendChild(el("p", null, esc(para))));
+
+  // ---------- Floating hearts ----------
+  const hearts = $(".hearts");
+  const glyphs = ["♥", "♡", "❤", "✿"];
+  for (let i = 0; i < 18; i++) {
+    const s = el("span", null, glyphs[i % glyphs.length]);
+    s.style.left = Math.random() * 100 + "%";
+    s.style.fontSize = 12 + Math.random() * 22 + "px";
+    s.style.animationDuration = 12 + Math.random() * 14 + "s";
+    s.style.animationDelay = -Math.random() * 20 + "s";
+    hearts.appendChild(s);
+  }
 
   // ---------- Music ----------
   // One main song; the notes / photos sections can have their own, which
@@ -195,14 +222,20 @@
 
   // ---------- Open envelope ----------
   $("#openBtn").addEventListener("click", function () {
+    this.classList.add("open");
     started = true;
     audio.volume = 1;
     audio.play().catch(() => setPlaying(false));
-    $("#intro").hidden = true;
-    $("#site").hidden = false;
-    player.hidden = false;
-    $("#pager").hidden = false;
-    enter(0);
+    setTimeout(() => {
+      $("#intro").classList.add("gone");
+      const site = $("#site");
+      site.hidden = false;
+      site.classList.add("show");
+      player.hidden = false;
+      $("#pager").hidden = false;
+      enter(0);
+      confetti(180);
+    }, 1300);
   }, { once: true });
 
   // ---------- Pages ----------
@@ -223,6 +256,13 @@
     pages.forEach((p, j) => p.classList.toggle("active", j === i));
     const pg = pages[i];
     pg.scrollTop = 0;
+    const items = pg.querySelectorAll(".reveal");
+    items.forEach((n) => { n.style.transitionDelay = "0s"; n.classList.remove("in"); });
+    void pg.offsetWidth;
+    items.forEach((n, k) => {
+      n.style.transitionDelay = `${0.15 + Math.min(k, 10) * 0.12}s`;
+      n.classList.add("in");
+    });
     [...dots.children].forEach((d, j) => d.classList.toggle("on", j === i));
     $("#prevBtn").disabled = i === 0;
     $("#nextLabel").textContent = C.princessLine || "Happiest Birthday, My Princess";
@@ -313,6 +353,44 @@
     const msg = $("#wishMsg");
     msg.textContent = C.wishMessage;
     msg.hidden = false;
+    confetti(260);
   });
 
+  // ---------- Confetti ----------
+  const cv = $("#confetti");
+  const ctx = cv.getContext("2d");
+  let parts = [], running = false;
+  const colors = ["#e05a7a", "#f7c6d0", "#e8b65c", "#b8325a", "#ffffff", "#c96b9e"];
+  function confetti(n) {
+    cv.width = innerWidth * devicePixelRatio;
+    cv.height = innerHeight * devicePixelRatio;
+    for (let i = 0; i < n; i++) {
+      parts.push({
+        x: innerWidth / 2 + (Math.random() - 0.5) * 200,
+        y: innerHeight * 0.45,
+        vx: (Math.random() - 0.5) * 14,
+        vy: -Math.random() * 14 - 4,
+        s: 5 + Math.random() * 7,
+        r: Math.random() * Math.PI,
+        vr: (Math.random() - 0.5) * 0.3,
+        c: colors[(Math.random() * colors.length) | 0],
+        heart: Math.random() < 0.25,
+      });
+    }
+    if (!running) { running = true; requestAnimationFrame(tick); }
+  }
+  function tick() {
+    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    parts.forEach((p) => {
+      p.vy += 0.32; p.vx *= 0.99; p.x += p.vx; p.y += p.vy; p.r += p.vr;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r); ctx.fillStyle = p.c;
+      if (p.heart) { ctx.font = `${p.s * 2}px serif`; ctx.fillText("♥", 0, 0); }
+      else ctx.fillRect(-p.s / 2, -p.s / 4, p.s, p.s / 2);
+      ctx.restore();
+    });
+    parts = parts.filter((p) => p.y < innerHeight + 40);
+    if (parts.length) requestAnimationFrame(tick);
+    else { running = false; ctx.clearRect(0, 0, innerWidth, innerHeight); }
+  }
 })();

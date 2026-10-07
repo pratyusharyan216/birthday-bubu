@@ -28,6 +28,18 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 img { display: block; max-width: 100%; }
 [hidden] { display: none !important; }
 
+/* ---------- Floating hearts ---------- */
+.hearts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.hearts span {
+  position: absolute; bottom: -40px;
+  color: var(--rose); opacity: 0.25;
+  animation: floatUp linear infinite;
+}
+@keyframes floatUp {
+  to { transform: translateY(-115vh) rotate(25deg); }
+}
+#confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 60; }
+
 /* ---------- Intro / envelope ---------- */
 .intro {
   position: fixed; inset: 0; z-index: 50;
@@ -61,6 +73,7 @@ img { display: block; max-width: 100%; }
   font-family: var(--display); font-style: italic; font-size: 3rem; color: var(--rose-deep); line-height: 1.2;
   display: inline-block; position: relative; transition: opacity 0.45s ease, transform 0.45s ease, filter 0.45s ease;
 }
+.intro-name.swap-out { opacity: 0; transform: translateY(-12px) scale(0.9); filter: blur(6px); }
 .intro-name.final {
   font-family: "Great Vibes", cursive; font-style: normal; font-size: 4.6rem; line-height: 1.1;
   padding: 0 0.15em;
@@ -150,6 +163,7 @@ h2 {
 .name-word {
   font-family: "Great Vibes", cursive; font-weight: 400; line-height: 1.15;
   font-size: clamp(4.5rem, min(21vw, 17vh), 11rem); margin: 6px 0 0; white-space: nowrap;
+  filter: drop-shadow(0 6px 24px rgba(224, 90, 122, 0.35));
 }
 .nm-letter {
   display: inline-block; padding: 0 0.12em; margin: 0 -0.12em;
@@ -182,12 +196,24 @@ h2 {
 @keyframes pop { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: scale(1); } }
 
 .acrostic { list-style: none; margin-top: 22px; display: grid; gap: 4px; text-align: left; }
+.acrostic li.reveal.in { transition-delay: calc(2.8s + var(--k) * 0.2s) !important; }
 .acrostic li { display: flex; align-items: baseline; gap: 14px; }
 .acrostic b {
   font-family: "Great Vibes", cursive; font-weight: 400; font-size: 2.4rem; line-height: 1;
   width: 1.1em; text-align: center; color: var(--rose-deep);
 }
 .acrostic span { font-family: var(--display); font-style: italic; font-size: 1.15rem; color: var(--ink); }
+
+.name-sparkles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.name-sparkles span {
+  position: absolute; color: var(--gold); opacity: 0;
+  text-shadow: 0 0 10px rgba(246, 196, 122, 0.9);
+}
+.page.active .name-sparkles span { animation: twinkle var(--d) ease-in-out var(--delay) infinite; }
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.3) rotate(0); }
+  50% { opacity: 1; transform: scale(1) rotate(90deg); }
+}
 
 /* ---------- Notes ---------- */
 .notes { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; }
@@ -320,7 +346,7 @@ h2 {
 .player {
   position: fixed; left: 16px; top: 16px; z-index: 40;
   display: flex; align-items: center; gap: 12px;
-  background: rgba(255,255,255,0.9); 
+  background: rgba(255,255,255,0.9); backdrop-filter: blur(8px);
   padding: 8px 18px 8px 8px; border-radius: 999px; box-shadow: var(--shadow);
   max-width: calc(100vw - 32px);
 }
@@ -352,7 +378,7 @@ h2 {
 .pager {
   position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 45;
   display: flex; align-items: center; gap: 14px;
-  background: rgba(255,255,255,0.97);
+  background: rgba(255,255,255,0.85); backdrop-filter: blur(10px);
   padding: 8px 8px 8px 10px; border-radius: 999px; box-shadow: var(--shadow);
   max-width: calc(100vw - 32px);
 }
@@ -405,9 +431,6 @@ h2 {
   .reveal { opacity: 1; transform: none; }
 }
 
-/* ---------- No animations (they made the site lag on phones) ---------- */
-*, *::before, *::after { animation: none !important; transition: none !important; }
-.reveal, .nm-letter { opacity: 1; transform: none; filter: none; }
-.name-flourish path { stroke-dashoffset: 0; }
-.name-flourish .heart-dot { opacity: 1; }
-.polaroid { transform: rotate(var(--r, 0deg)); }
+/* keep the polaroid tilt after the float-in animation */
+.polaroid.reveal.in { transform: rotate(var(--r, 0deg)); }
+.polaroid.reveal.in:hover { transform: rotate(0) scale(1.04); }

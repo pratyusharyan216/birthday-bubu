@@ -118,6 +118,8 @@
       : `<img src="${esc(file)}" alt="${esc(alt)}" loading="lazy" onerror="${missing(file)}">`;
 
   // Gallery
+  $("#photosTitle").textContent = C.photosTitle || "Us, in pictures";
+  $("#photosSub").textContent = C.photosSubtitle || "Tap a photo to see it bigger";
   const gallery = $("#gallery");
   C.photos.forEach((p, i) => {
     const f = el("figure", "polaroid reveal");

@@ -71,6 +71,8 @@ window.BIRTHDAY = {
   // file = name of the photo OR video inside the /photos folder.
   // Videos work too — just use the video's name, e.g. "photos/dance.mp4"
   // (use .mp4 so it plays on every phone; keep each video under ~50 MB).
+  photosTitle: "You, through my eyes",
+  photosSubtitle: "Every frame of you is my favourite view — tap to see it closer 📸",
   photos: [
     { file: "photos/1.jpg", caption: "My girl at Victoria Memorial 🤍" },
     { file: "photos/2.jpg", caption: "Main character energy ✨" },

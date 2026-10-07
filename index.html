@@ -7,12 +7,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Great+Vibes&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=1791282269" />
+  <link rel="stylesheet" href="style.css?v=1791360297" />
 </head>
 <body>
-  <!-- Floating hearts background -->
-  <div class="hearts" aria-hidden="true"></div>
-  <canvas id="confetti" aria-hidden="true"></canvas>
 
   <!-- Envelope intro -->
   <div id="intro" class="intro">
@@ -52,7 +49,6 @@
     <!-- Name page -->
     <section class="page name-page">
       <div class="name-stage">
-        <div class="name-sparkles" id="nameSparkles" aria-hidden="true"></div>
         <p class="name-line reveal" id="nameLine"></p>
         <h2 class="name-word" id="nameWord"></h2>
         <svg class="name-flourish" viewBox="0 0 400 40" aria-hidden="true">
@@ -128,12 +124,6 @@
     <button class="pg-next" id="nextBtn"><span id="nextLabel">Next</span> <span class="pg-heart">♥</span></button>
   </nav>
 
-  <!-- Heart transition -->
-  <div class="wipe" id="wipe" aria-hidden="true">
-    <svg class="wipe-heart" viewBox="0 0 100 92"><path d="M50 90 C20 68 0 50 0 27 C0 11 12 0 27 0 C37 0 45 6 50 14 C55 6 63 0 73 0 C88 0 100 11 100 27 C100 50 80 68 50 90 Z"/></svg>
-  </div>
-  <div class="burst" id="burst" aria-hidden="true"></div>
-
   <!-- Music player -->
   <div class="player" id="player" hidden>
     <button class="vinyl" id="playBtn" aria-label="Play / pause music">
@@ -158,7 +148,7 @@
     <button class="lb-nav lb-next" id="lbNext" aria-label="Next">›</button>
   </div>
 
-  <script src="content.js?v=1791282269"></script>
-  <script src="script.js?v=1791282269"></script>
+  <script src="content.js?v=1791360297"></script>
+  <script src="script.js?v=1791360297"></script>
 </body>
 </html>

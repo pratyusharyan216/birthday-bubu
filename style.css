@@ -351,20 +351,36 @@ h2 {
 .tl-card p { color: var(--ink-soft); line-height: 1.6; }
 .tl-card img, .tl-card video { margin-top: 14px; display: block; background: var(--bg-2); border-radius: 10px; width: 100%; max-height: 380px; object-fit: cover; object-position: center 30%; }
 
-/* ---------- Letter ---------- */
+/* ---------- Letter: an old, coffee-stained sheet of plain paper ---------- */
 .letter {
-  max-width: 680px; margin: 0 auto; background: var(--paper); padding: 56px 52px;
-  border-radius: 6px; box-shadow: var(--shadow); position: relative;
-  background-image: repeating-linear-gradient(transparent 0 37px, #d6e4f7 37px 38px);
-  background-position: 0 50px;
+  max-width: 680px; margin: 0 auto; padding: 64px 58px 56px; position: relative; color: #4a2f1b;
+  background-color: #ead7b4;
+  background-image:
+    radial-gradient(ellipse at 16% 10%, rgba(150, 100, 50, 0.20) 0, transparent 38%),
+    radial-gradient(ellipse at 88% 84%, rgba(140, 90, 40, 0.22) 0, transparent 42%),
+    radial-gradient(ellipse at 74% 20%, rgba(160, 110, 60, 0.12) 0, transparent 30%),
+    radial-gradient(circle at 17% 93%, transparent 0 33px, rgba(120, 75, 35, 0.17) 34px 37px, transparent 39px),
+    linear-gradient(135deg, #f2e4c6 0%, #e6d1a8 55%, #dcc295 100%);
+  border-radius: 3px 9px 4px 11px / 10px 4px 9px 3px;
+  box-shadow:
+    inset 0 0 70px rgba(120, 75, 30, 0.38), inset 0 0 16px rgba(90, 55, 20, 0.4),
+    0 14px 34px rgba(60, 40, 20, 0.28);
 }
+/* paper grain */
 .letter::before {
-  content: ""; position: absolute; left: 34px; top: 0; bottom: 0; width: 1px; background: #9dc0f0;
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36  0 0 0 0 .23  0 0 0 0 .1  0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.4; mix-blend-mode: multiply;
 }
-.letter p { font-family: var(--hand); font-size: 1.65rem; line-height: 38px; margin-bottom: 38px; }
-.letter p:first-child { color: var(--rose-deep); font-weight: 700; }
-.signoff { text-align: right; margin: 0 !important; }
-.signoff span { color: var(--rose-deep); font-weight: 700; }
+/* an old fold across the middle */
+.letter::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 3px; pointer-events: none;
+  background: linear-gradient(rgba(255, 250, 235, 0.45), rgba(90, 55, 20, 0.14));
+}
+#letterBody, .signoff { position: relative; z-index: 1; }
+.letter p { font-family: var(--hand); font-size: 1.65rem; line-height: 1.5; margin-bottom: 22px; }
+.letter p:first-child { color: #6b3a1e; font-weight: 700; font-size: 1.9rem; }
+.signoff { text-align: right; margin: 34px 0 0 !important; }
+.signoff span { color: #6b3a1e; font-weight: 700; font-size: 1.9rem; }
 
 /* ---------- Cake ---------- */
 .cake-section { text-align: center; }
@@ -499,8 +515,7 @@ h2 {
   .timeline::before { left: 16px; }
   .tl-item, .tl-item:nth-child(even), .tl-item:nth-child(odd) { width: 100%; margin-left: 0; padding: 0 0 36px 48px; text-align: left; }
   .tl-item:nth-child(odd)::before, .tl-item:nth-child(even)::before { left: 0; right: auto; }
-  .letter { padding: 40px 24px 40px 44px; }
-  .letter::before { left: 28px; }
+  .letter { padding: 44px 26px 40px; }
   .letter p { font-size: 1.45rem; }
   .lb-nav { position: absolute; bottom: 20px; }
   .lb-prev { left: 20px; } .lb-next { right: 20px; }

@@ -140,10 +140,14 @@ window.BIRTHDAY = {
   // Each item is a paragraph.
   letter: [
     "My dearest Bubu,",
-    "Happy birthday, my love. I wanted to make you something that you can come back to whenever you want — a little corner of the internet that is only yours.",
+    "Happy birthday, my love. I wanted to make you something you can come back to whenever you want — a little corner of the world that is only yours.",
+    "I still don't know what I did to deserve you. Some people search a whole lifetime for what I found in your smile.",
     "Thank you for being my best friend, my safe place, and my favourite person to do absolutely nothing with. You make my life softer, brighter and so much funnier.",
-    "I hope this year gives you everything you've been wishing for, and I promise to be right there for all of it.",
-    "I love you, today and always.",
+    "If I could give you one thing, it would be the chance to see yourself through my eyes — only then would you know how special you are to me.",
+    "You are my today and all of my tomorrows. On my loudest days and my quietest nights, it is always you my heart comes home to.",
+    "I can't promise that every day will be perfect. But I promise to hold your hand through all of them, to choose you again every morning, and to love you a little more than I did the day before.",
+    "I hope this year gives you everything you have been wishing for — and I will be right there beside you for all of it.",
+    "I love you, Nirjala. Today, tomorrow, and for every birthday still to come.",
   ],
 
   // Shown after she blows out the candles

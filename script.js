@@ -338,6 +338,10 @@
   $("#lbNext").onclick = (e) => { e.stopPropagation(); openLightbox(lbIndex + 1); };
   box.addEventListener("click", (e) => { if (e.target === box) closeLightbox(); });
   document.addEventListener("keydown", (e) => {
+    if (!wishBox.hidden) {
+      if (e.key === "Escape") closeWish();
+      return;
+    }
     if (box.hidden) {
       if (page < 0) return;
       if (e.key === "ArrowRight") go(page + 1);
@@ -358,7 +362,43 @@
     msg.textContent = C.wishMessage;
     msg.hidden = false;
     confetti(260);
+    if (wishReady) {
+      // Start inside the tap so phones allow sound, then show it after the confetti
+      wishVid.play().then(() => { if (wishBox.hidden) { wishVid.pause(); wishVid.currentTime = 0; } }).catch(() => {});
+      const cakePage = page;
+      setTimeout(() => { if (page === cakePage) openWish(); }, 2200);
+    }
   });
+
+  // ---------- Video after the candles ----------
+  const wishBox = $("#wishBox"), wishVid = $("#wishVideo");
+  // Skipped only when there is no video, or the file is missing
+  let wishReady = !!C.wishVideo;
+  if (wishReady) {
+    wishVid.addEventListener("error", () => (wishReady = false), { once: true });
+    wishVid.src = C.wishVideo;
+  }
+  function openWish() {
+    if (!wishBox.hidden) return;
+    musicBeforeVideo = !audio.paused;
+    videoPlaying = true;
+    audio.pause();
+    wishBox.hidden = false;
+    wishVid.currentTime = 0;
+    wishVid.play().catch(() => {});
+  }
+  function closeWish() {
+    if (wishBox.hidden) return;
+    wishBox.hidden = true;
+    wishVid.pause();
+    videoPlaying = false;
+    if (musicBeforeVideo && !userPaused) audio.play().catch(() => {});
+    $("#wishReplay").hidden = false;
+  }
+  wishVid.addEventListener("ended", closeWish);
+  $("#wishClose").addEventListener("click", closeWish);
+  wishBox.addEventListener("click", (e) => { if (e.target === wishBox) closeWish(); });
+  $("#wishReplay").addEventListener("click", openWish);
 
   // ---------- Confetti ----------
   const cv = $("#confetti");

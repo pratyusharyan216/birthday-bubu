@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Great+Vibes&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=1791362141" />
+  <link rel="stylesheet" href="style.css?v=1791598179" />
 </head>
 <body>
   <!-- Floating hearts background -->
@@ -116,6 +116,7 @@
           <span class="plate"></span>
         </button>
         <p class="wish-msg" id="wishMsg" hidden></p>
+        <button class="wish-replay" id="wishReplay" hidden>▶ Watch your surprise again</button>
         <footer class="footer reveal">made with all my love, just for <span data-name></span> 💖</footer>
       </div>
     </section>
@@ -152,7 +153,13 @@
     <button class="lb-nav lb-next" id="lbNext" aria-label="Next">›</button>
   </div>
 
-  <script src="content.js?v=1791362141"></script>
-  <script src="script.js?v=1791362141"></script>
+  <!-- Video after the candles -->
+  <div class="lightbox" id="wishBox" hidden>
+    <button class="lb-close" id="wishClose" aria-label="Close">×</button>
+    <video id="wishVideo" controls playsinline preload="metadata"></video>
+  </div>
+
+  <script src="content.js?v=1791598179"></script>
+  <script src="script.js?v=1791598179"></script>
 </body>
 </html>

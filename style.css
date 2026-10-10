@@ -338,6 +338,11 @@ h2 {
 }
 @keyframes flicker { to { transform: scaleY(1.12) rotate(3deg); } }
 .cake.out .flame { opacity: 0; transform: scale(0.2); animation: none; }
+.wish-replay {
+  margin-top: 16px; padding: 10px 22px; border-radius: 999px; font-weight: 500;
+  background: linear-gradient(135deg, var(--rose), var(--rose-deep)); color: #fff;
+  box-shadow: 0 6px 18px rgba(184, 50, 90, 0.35);
+}
 .wish-msg { margin-top: 24px; font-family: var(--hand); font-size: 1.8rem; color: var(--rose-deep); }
 
 .footer { text-align: center; padding: 50px 0 0; color: var(--ink-soft); font-family: var(--hand); font-size: 1.4rem; }

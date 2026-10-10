@@ -141,7 +141,6 @@ window.BIRTHDAY = {
   letter: [
     "My dearest Bubu,",
     "Happy birthday, my love. I wanted to make you something you can come back to whenever you want — a little corner of the world that is only yours.",
-    "I still don't know what I did to deserve you. Some people search a whole lifetime for what I found in your smile.",
     "Thank you for being my best friend, my safe place, and my favourite person to do absolutely nothing with. You make my life softer, brighter and so much funnier.",
     "If I could give you one thing, it would be the chance to see yourself through my eyes — only then would you know how special you are to me.",
     "You are my today and all of my tomorrows. On my loudest days and my quietest nights, it is always you my heart comes home to.",

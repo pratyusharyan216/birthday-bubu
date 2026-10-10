@@ -101,6 +101,8 @@
     $("#cupidSub").textContent = C.cupidSubtitle || "";
     lines.forEach(() => count.appendChild(el("span", null, "♡")));
     let shot = 0, firing = false;
+    const btnLabels = C.cupidButtons && C.cupidButtons.length ? C.cupidButtons : ["Let my heart find yours 💘"];
+    btn.textContent = btnLabels[0];
 
     // The heart bursts into roses
     const rosesOut = () => {
@@ -147,7 +149,7 @@
             c.textContent = on ? "♥" : "♡";
             c.classList.toggle("on", on);
           });
-          btn.textContent = shot >= lines.length ? "Shoot again, my love 💘" : "Shoot another 🏹";
+          btn.textContent = btnLabels[Math.min(shot, btnLabels.length - 1)];
           setTimeout(() => { scene.classList.remove("reload"); firing = false; }, 1700);
         }, 430);
       }, 380);

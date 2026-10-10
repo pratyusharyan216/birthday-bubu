@@ -55,6 +55,18 @@ window.BIRTHDAY = {
   // ---------- Cupid slide: every arrow that hits the heart shows the next line ----------
   cupidTitle: "Cupid only needed one arrow",
   cupidSubtitle: "Tap the heart, my love — every arrow carries something I feel for you",
+  // Text on the button: first one shows before the first arrow, then it changes
+  // after every arrow. The last one stays.
+  cupidButtons: [
+    "Let my heart find yours 💘",
+    "Fall for me once more 💕",
+    "Another arrow, another promise 💞",
+    "Steal my heart again 💗",
+    "Love me a little more 🌹",
+    "One more piece of my heart 💓",
+    "Once more, my love 💘",
+    "Again and again, forever 💖",
+  ],
   cupidLines: [
     "The first arrow was the day I saw you — I never stood a chance.",
     "You are the poem I never knew how to write.",

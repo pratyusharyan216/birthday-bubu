@@ -92,6 +92,67 @@
     document.querySelector(".name-page").remove();
   }
 
+  // Cupid page: tap → pull the string → arrow flies → heart is hit → next line
+  if (C.cupidLines && C.cupidLines.length) {
+    const lines = C.cupidLines;
+    const scene = $("#cupidScene"), string = $("#cupidString"), heart = $("#cupidHeart");
+    const lineEl = $("#cupidLine"), count = $("#cupidCount"), btn = $("#cupidBtn");
+    $("#cupidTitle").textContent = C.cupidTitle || "";
+    $("#cupidSub").textContent = C.cupidSubtitle || "";
+    lines.forEach(() => count.appendChild(el("span", null, "♡")));
+    let shot = 0, firing = false;
+
+    const heartsOut = () => {
+      const b = $("#cupidBurst");
+      for (let k = 0; k < 10; k++) {
+        const h = el("span", null, k % 2 ? "♥" : "💕");
+        const a = (k / 10) * Math.PI * 2 + Math.random() * 0.5, d = 50 + Math.random() * 60;
+        h.style.setProperty("--dx", `${Math.cos(a) * d}px`);
+        h.style.setProperty("--dy", `${Math.sin(a) * d}px`);
+        h.style.fontSize = `${12 + Math.random() * 14}px`;
+        b.appendChild(h);
+        setTimeout(() => h.remove(), 1000);
+      }
+    };
+
+    const shoot = () => {
+      if (firing) return;
+      firing = true;
+      ensureMusic();
+      scene.classList.add("pull");
+      string.setAttribute("d", "M150 84 L128 128 L150 172");
+      setTimeout(() => {
+        scene.classList.replace("pull", "fire");
+        string.setAttribute("d", "M150 84 L150 128 L150 172");
+        setTimeout(() => {
+          scene.classList.replace("fire", "reload");
+          scene.classList.add("struck");
+          heart.classList.remove("hit");
+          void heart.getBoundingClientRect();
+          heart.classList.add("hit");
+          heartsOut();
+          lineEl.classList.remove("show");
+          void lineEl.offsetWidth;
+          lineEl.textContent = lines[shot % lines.length];
+          lineEl.classList.add("show");
+          shot++;
+          [...count.children].forEach((c, i) => {
+            const on = i < (shot > lines.length ? ((shot - 1) % lines.length) + 1 : shot);
+            c.textContent = on ? "♥" : "♡";
+            c.classList.toggle("on", on);
+          });
+          btn.textContent = shot >= lines.length ? "Shoot again, my love 💘" : "Shoot another 🏹";
+          setTimeout(() => { scene.classList.remove("reload"); firing = false; }, 450);
+        }, 430);
+      }, 380);
+    };
+    scene.addEventListener("click", shoot);
+    scene.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); shoot(); } });
+    btn.addEventListener("click", shoot);
+  } else {
+    document.querySelector(".cupid-page").remove();
+  }
+
   // Notes
   $("#notesTitle").textContent = C.notesTitle || "Little notes for you";
   $("#notesSub").textContent = C.notesSubtitle || "Tap each one to open it";

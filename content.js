@@ -55,6 +55,19 @@ window.BIRTHDAY = {
   // Short line under the big "Happy Birthday"
   tagline: "To the girl who makes every ordinary day feel like a celebration.",
 
+  // ---------- Cupid slide: every arrow that hits the heart shows the next line ----------
+  cupidTitle: "Cupid only needed one arrow",
+  cupidSubtitle: "Tap the heart, my love — every arrow carries something I feel for you",
+  cupidLines: [
+    "The first arrow was the day I saw you — I never stood a chance.",
+    "You are the poem I never knew how to write.",
+    "In a world full of people, my heart only ever looks for you.",
+    "If I had a flower for every time you made me smile, I'd walk in a garden forever.",
+    "You're not just my love — you're my home.",
+    "Every heartbeat of mine quietly says your name… Nirjala.",
+    "I'd choose you — in every lifetime, in every world, every single time.",
+  ],
+
   // ---------- Little notes (she taps each one to open it) ----------
   notesTitle: "Whispers from my heart",
   notesSubtitle: "Folded with love, sealed with a kiss — open them one by one 💌",

@@ -297,41 +297,22 @@
   switchTo("main");
 
   // ---------- Open envelope ----------
-  // Tap → the boy walks over, kneels and offers the envelope → she takes it →
-  // it grows, opens, and the site appears. A second tap skips straight in.
-  const intro = $("#intro"), stage = $("#openBtn");
-  const introTimers = [];
-  let introDone = false;
-  const finishIntro = () => {
-    if (introDone) return;
-    introDone = true;
-    introTimers.forEach(clearTimeout);
-    intro.classList.add("gone");
-    const site = $("#site");
-    site.hidden = false;
-    site.classList.add("show");
-    player.hidden = false;
-    $("#pager").hidden = false;
-    enter(0);
-    confetti(180);
-  };
-  const startIntro = () => {
-    if (started) { finishIntro(); return; }
+  $("#openBtn").addEventListener("click", function () {
+    this.classList.add("open");
     started = true;
     audio.volume = 1;
     audio.play().catch(() => setPlaying(false));
-    intro.classList.add("playing");
-    const at = (ms, fn) => introTimers.push(setTimeout(fn, ms));
-    stage.classList.add("s1");                                   // he walks to her
-    at(1150, () => stage.classList.add("s2"));                   // kneels, offers the envelope
-    at(2500, () => stage.classList.add("s3"));                   // she reaches out
-    at(3100, () => stage.classList.add("s3b"));                  // she takes it
-    at(4300, () => stage.classList.add("s4"));                   // the envelope grows
-    at(5200, () => stage.querySelector(".envelope").classList.add("open"));
-    at(6600, finishIntro);
-  };
-  intro.addEventListener("click", startIntro);
-  stage.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); startIntro(); } });
+    setTimeout(() => {
+      $("#intro").classList.add("gone");
+      const site = $("#site");
+      site.hidden = false;
+      site.classList.add("show");
+      player.hidden = false;
+      $("#pager").hidden = false;
+      enter(0);
+      confetti(180);
+    }, 1300);
+  }, { once: true });
 
   // ---------- Pages ----------
   const pages = [...document.querySelectorAll(".page")];

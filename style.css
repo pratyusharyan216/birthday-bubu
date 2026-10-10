@@ -247,9 +247,10 @@ h2 {
 
 .cupid-burst { position: absolute; left: 81%; top: 51%; width: 0; height: 0; pointer-events: none; }
 .cupid-burst span {
-  position: absolute; left: 0; top: 0; color: var(--rose);
+  position: absolute; left: 0; top: 0; display: block;
   opacity: 0; animation: cupidFly 1.5s cubic-bezier(.15, .7, .3, 1) forwards;
 }
+.cupid-burst span svg { display: block; width: 100%; height: 100%; overflow: visible; }
 /* roses fly out, then drift down a little as they fade */
 @keyframes cupidFly {
   0%   { transform: translate(-50%, -50%) scale(0.2); opacity: 1; }

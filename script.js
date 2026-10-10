@@ -107,12 +107,12 @@
       const b = $("#cupidBurst");
       const n = 16;
       for (let k = 0; k < n; k++) {
-        const r = el("span", null, "🌹");
+        const r = el("span", null, '<svg viewBox="-52 -52 104 104"><use href="#roseTop" x="-52" y="-52" width="104" height="104" /></svg>');
         const a = (k / n) * Math.PI * 2 + Math.random() * 0.4, d = 60 + Math.random() * 90;
         r.style.setProperty("--dx", `${Math.cos(a) * d}px`);
         r.style.setProperty("--dy", `${Math.sin(a) * d}px`);
         r.style.setProperty("--rot", `${(Math.random() - 0.5) * 240}deg`);
-        r.style.fontSize = `${18 + Math.random() * 16}px`;
+        r.style.width = r.style.height = `${26 + Math.random() * 22}px`;
         r.style.animationDelay = `${Math.random() * 0.12}s`;
         b.appendChild(r);
         setTimeout(() => r.remove(), 1700);

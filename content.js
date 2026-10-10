@@ -85,7 +85,7 @@ window.BIRTHDAY = {
     { front: "Things I love about you", back: "Your kindness. Your honesty. Your softness. That little ring on your nose. Your voice. Your company. Your touch. Your warmth. I could go on forever — I love every single thing that makes you, you." },
     { front: "A promise", back: "I'll always bring snacks, always hold your hand in crowds, and always choose you. Every single day." },
     { front: "Why today matters", back: "Today the world got you. And somehow, I got lucky enough to be the one standing next to you." },
-    { front: "Our journey", back: "Every morning to college and every evening back home — the same train, side by side. The crowd, the noise, the long ride… none of it mattered, because I had you next to me. Those were never just train rides. They were the best part of my day. And I would happily travel every road of this life with you." },
+    { front: "Our journey", back: "Remember going home for the holidays, and coming back to college again — the same train, side by side? The crowd, the noise, the long hours… none of it mattered, because I had you next to me. Those were never just train rides. I used to wait for the holidays just for that journey with you. And I would happily travel every road of this life the same way." },
     { front: "For later", back: "Save this one for the next time we fight: I'm sorry, I love you, let's get food. 🍕" },
     { front: "Open when you miss me", back: "Close your eyes and count to three. I'm already thinking of you — I always am. Distance never stood a chance against us." },
     { front: "My forever wish", back: "To grow old with you, laugh at the same silly things, and still hold your hand like it's the very first time." },

@@ -37,17 +37,20 @@ window.BIRTHDAY = {
   // and "It's your birthday today!" on the day itself.
   birthday: "2026-10-11",
 
-  // The main song — plays from the moment she opens the envelope
+  // The main song — plays from the moment she opens the envelope.
+  // "start" is optional: the second the song begins from (0 = from the very beginning).
   song: {
-    file: "music/song.mp3",
-    title: "Our Song",
-    artist: "Artist name",
+    file: "music/tum-se-hi.mp3",
+    title: "Tum Se Hi",
+    artist: "Mohit Chauhan · Jab We Met",
+    start: 0,
   },
 
-  // OPTIONAL: a different song while she reads the notes / looks at photos.
+  // A different song on the Cupid slide, the notes slide and the photos slide.
   // Leave file as "" to just keep the main song playing there.
-  notesSong:  { file: "", title: "", artist: "" },
-  photosSong: { file: "", title: "", artist: "" },
+  cupidSong:  { file: "music/pehli-nazar-mein.mp3", title: "Pehli Nazar Mein", artist: "Atif Aslam · Race", start: 0 },
+  notesSong:  { file: "music/pal.mp3", title: "Pal", artist: "Arijit Singh & Shreya Ghoshal · Jalebi", start: 0 },
+  photosSong: { file: "music/kaun-tujhe.mp3", title: "Kaun Tujhe", artist: "Palak Muchhal · M.S. Dhoni", start: 0 },
 
   // Short line under the big "Happy Birthday"
   tagline: "To the girl who makes every ordinary day feel like a celebration.",

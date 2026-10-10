@@ -240,6 +240,7 @@
   const tracks = { main: C.song };
   if (C.notesSong && C.notesSong.file) tracks.notes = C.notesSong;
   if (C.photosSong && C.photosSong.file) tracks.photos = C.photosSong;
+  if (C.cupidSong && C.cupidSong.file) tracks.cupid = C.cupidSong;
   const positions = {};
   let current = null, userPaused = false, started = false, fadeTimer = null;
 
@@ -268,7 +269,8 @@
       audio.src = tracks[key].file;
       showTrack(tracks[key]);
       audio.addEventListener("loadedmetadata", () => {
-        if (positions[key]) audio.currentTime = positions[key];
+        const pos = positions[key] != null ? positions[key] : (tracks[key] && tracks[key].start) || 0;
+        if (pos) audio.currentTime = pos;
       }, { once: true });
       audio.volume = 0;
       if (started && !userPaused) audio.play().catch(() => setPlaying(false));
@@ -287,6 +289,13 @@
   audio.addEventListener("pause", () => setPlaying(false));
   audio.addEventListener("error", () => {
     if (!audio.getAttribute("src")) return;
+    // a missing section song falls back to the main song instead of going silent
+    if (current !== "main") {
+      delete tracks[current];
+      current = null;
+      switchTo("main");
+      return;
+    }
     $("#trackArtist").textContent = `add ${tracks[current].file} to play a song`;
     setPlaying(false);
   });
@@ -341,7 +350,7 @@
     });
     [...dots.children].forEach((d, j) => d.classList.toggle("on", j === i));
     $("#prevBtn").disabled = i === 0;
-    switchTo(pg.dataset.song || "main");
+    switchTo(tracks[pg.dataset.song] ? pg.dataset.song : "main");
   }
 
   function go(i) {

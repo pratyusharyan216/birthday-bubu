@@ -102,16 +102,20 @@
     lines.forEach(() => count.appendChild(el("span", null, "♡")));
     let shot = 0, firing = false;
 
-    const heartsOut = () => {
+    // The heart bursts into roses
+    const rosesOut = () => {
       const b = $("#cupidBurst");
-      for (let k = 0; k < 10; k++) {
-        const h = el("span", null, k % 2 ? "♥" : "💕");
-        const a = (k / 10) * Math.PI * 2 + Math.random() * 0.5, d = 50 + Math.random() * 60;
-        h.style.setProperty("--dx", `${Math.cos(a) * d}px`);
-        h.style.setProperty("--dy", `${Math.sin(a) * d}px`);
-        h.style.fontSize = `${12 + Math.random() * 14}px`;
-        b.appendChild(h);
-        setTimeout(() => h.remove(), 1000);
+      const n = 16;
+      for (let k = 0; k < n; k++) {
+        const r = el("span", null, "🌹");
+        const a = (k / n) * Math.PI * 2 + Math.random() * 0.4, d = 60 + Math.random() * 90;
+        r.style.setProperty("--dx", `${Math.cos(a) * d}px`);
+        r.style.setProperty("--dy", `${Math.sin(a) * d}px`);
+        r.style.setProperty("--rot", `${(Math.random() - 0.5) * 240}deg`);
+        r.style.fontSize = `${18 + Math.random() * 16}px`;
+        r.style.animationDelay = `${Math.random() * 0.12}s`;
+        b.appendChild(r);
+        setTimeout(() => r.remove(), 1700);
       }
     };
 
@@ -126,15 +130,17 @@
         string.setAttribute("d", "M150 84 L150 128 L150 172");
         setTimeout(() => {
           scene.classList.replace("fire", "reload");
-          scene.classList.add("struck");
           heart.classList.remove("hit");
           void heart.getBoundingClientRect();
           heart.classList.add("hit");
-          heartsOut();
+          rosesOut();
           lineEl.classList.remove("show");
-          void lineEl.offsetWidth;
-          lineEl.textContent = lines[shot % lines.length];
-          lineEl.classList.add("show");
+          const text = lines[shot % lines.length];
+          // the line arrives once the roses have burst out
+          setTimeout(() => {
+            lineEl.textContent = text;
+            lineEl.classList.add("show");
+          }, 650);
           shot++;
           [...count.children].forEach((c, i) => {
             const on = i < (shot > lines.length ? ((shot - 1) % lines.length) + 1 : shot);
@@ -142,7 +148,7 @@
             c.classList.toggle("on", on);
           });
           btn.textContent = shot >= lines.length ? "Shoot again, my love 💘" : "Shoot another 🏹";
-          setTimeout(() => { scene.classList.remove("reload"); firing = false; }, 450);
+          setTimeout(() => { scene.classList.remove("reload"); firing = false; }, 1700);
         }, 430);
       }, 380);
     };

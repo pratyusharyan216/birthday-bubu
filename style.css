@@ -75,7 +75,7 @@ img { display: block; max-width: 100%; }
 }
 .intro-name.swap-out { opacity: 0; transform: translateY(-12px) scale(0.9); filter: blur(6px); }
 .intro-name.final {
-  font-family: "Great Vibes", cursive; font-style: normal; font-size: 4.6rem; line-height: 1.1;
+  font-family: "Parisienne", cursive; font-style: normal; font-size: 4.6rem; line-height: 1.1;
   padding: 0 0.15em;
   background: linear-gradient(100deg, #b8325a 0%, #e05a7a 30%, #f6c47a 48%, #fff4e0 52%, #f6c47a 58%, #e05a7a 75%, #b8325a 100%);
   background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -161,7 +161,7 @@ h2 {
 }
 .name-line { font-family: var(--hand); font-size: 1.6rem; color: var(--ink-soft); letter-spacing: 0.02em; }
 .name-word {
-  font-family: "Great Vibes", cursive; font-weight: 400; line-height: 1.15;
+  font-family: "Parisienne", cursive; font-weight: 400; line-height: 1.15;
   font-size: clamp(4.5rem, min(21vw, 17vh), 11rem); margin: 6px 0 0; white-space: nowrap;
   filter: drop-shadow(0 6px 24px rgba(224, 90, 122, 0.35));
 }
@@ -199,7 +199,7 @@ h2 {
 .acrostic li.reveal.in { transition-delay: calc(2.8s + var(--k) * 0.2s) !important; }
 .acrostic li { display: flex; align-items: baseline; gap: 14px; }
 .acrostic b {
-  font-family: "Great Vibes", cursive; font-weight: 400; font-size: 2.4rem; line-height: 1;
+  font-family: "Parisienne", cursive; font-weight: 400; font-size: 2.4rem; line-height: 1;
   width: 1.1em; text-align: center; color: var(--rose-deep);
 }
 .acrostic span { font-family: var(--display); font-style: italic; font-size: 1.15rem; color: var(--ink); }

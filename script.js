@@ -15,6 +15,9 @@
   $("#tagline").textContent = C.tagline;
   $("#fromName").textContent = C.from;
 
+  // Load the script font up front so her name never shows in a fallback font
+  if (document.fonts && document.fonts.load) document.fonts.load('1em "Parisienne"');
+
   // Envelope: cycle through her nicknames, settle on the last one
   $("#introLine").textContent = C.envelopeLine || "for";
   const introName = $("#introName");

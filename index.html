@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Parisienne&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=1791616870" />
+  <link rel="stylesheet" href="style.css?v=1791618474" />
 </head>
 <body>
   <!-- Floating hearts background -->
@@ -20,14 +20,77 @@
       <span class="for" id="introLine"></span>
       <span class="intro-name" id="introName"></span>
     </div>
-    <button class="envelope" id="openBtn" aria-label="Open your surprise">
-      <span class="env-back"></span>
-      <span class="env-letter"><span class="env-heart">♥</span></span>
-      <span class="env-front"></span>
-      <span class="env-flap"></span>
-      <span class="seal">💙</span>
-    </button>
-    <p class="intro-hint">tap to open</p>
+    <div class="intro-stage" id="openBtn" role="button" tabindex="0" aria-label="Open your surprise">
+      <svg class="intro-scene" viewBox="62 74 288 190" aria-hidden="true">
+        <!-- the boy -->
+        <g class="sc-boy">
+          <ellipse cx="110" cy="253" rx="30" ry="5" fill="#1f55b5" opacity="0.12" />
+          <g class="boy-hop">
+            <g class="boy-stand" stroke="#1d3461" stroke-width="11" stroke-linecap="round" fill="none">
+              <path d="M103 198 L101 244" /><path d="M117 198 L119 244" />
+              <ellipse cx="105" cy="248" rx="9" ry="5" fill="#16233b" stroke="none" /><ellipse cx="123" cy="248" rx="9" ry="5" fill="#16233b" stroke="none" />
+            </g>
+            <g class="boy-kneel" stroke="#1d3461" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" fill="none">
+              <path d="M104 220 L104 244 L80 246" /><path d="M116 220 L141 222 L141 243" />
+              <ellipse cx="145" cy="248" rx="9" ry="5" fill="#16233b" stroke="none" /><ellipse cx="76" cy="246" rx="5" ry="7" fill="#16233b" stroke="none" />
+            </g>
+            <g class="boy-body">
+              <rect x="94" y="142" width="32" height="64" rx="14" fill="#2f6bd0" />
+              <circle cx="110" cy="118" r="22" fill="#f6cfae" />
+              <path d="M88 118 C84 90 116 84 132 106 C124 104 118 106 114 101 C108 110 96 108 88 118Z" fill="#2b1b17" />
+              <circle cx="120" cy="118" r="2.6" fill="#16233b" />
+              <path d="M112 128 q5 4 10 -1" stroke="#b5533f" stroke-width="2" fill="none" stroke-linecap="round" />
+              <circle cx="124" cy="125" r="4.5" fill="#ee8f8f" opacity="0.4" />
+              <g class="boy-arm">
+                <path d="M112 156 L146 172" stroke="#f6cfae" stroke-width="9" stroke-linecap="round" />
+                <path d="M112 156 L126 163" stroke="#2f6bd0" stroke-width="11" stroke-linecap="round" />
+                <g class="sc-env sc-env-a" transform="translate(148 166)">
+                  <rect x="-15" y="-10" width="30" height="20" rx="3" fill="#fff" stroke="#4a8fe7" stroke-width="1.6" />
+                  <path d="M-15 -9 L0 3 L15 -9" fill="none" stroke="#4a8fe7" stroke-width="1.6" stroke-linejoin="round" />
+                  <path d="M0 7 c-2.6 -2.6 -5 -3.8 -5 -6.2 a2.5 2.5 0 0 1 5 -0.8 a2.5 2.5 0 0 1 5 0.8 c0 2.4 -2.4 3.6 -5 6.2z" fill="#1f55b5" />
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+
+        <!-- the girl -->
+        <g class="sc-girl">
+          <ellipse cx="300" cy="253" rx="30" ry="5" fill="#1f55b5" opacity="0.12" />
+          <g class="girl-joy">
+            <path d="M292 222 L292 244 M308 222 L308 244" stroke="#f6cfae" stroke-width="8" stroke-linecap="round" />
+            <ellipse cx="289" cy="248" rx="8" ry="4.5" fill="#1f55b5" /><ellipse cx="305" cy="248" rx="8" ry="4.5" fill="#1f55b5" />
+            <path d="M276 116 C272 82 328 82 324 116 L329 178 Q316 186 311 160 L289 160 Q284 186 271 178 Z" fill="#2b1b17" />
+            <path d="M284 144 Q300 138 316 144 L331 224 Q300 235 269 224 Z" fill="#fff" stroke="#c3dafc" stroke-width="1.5" />
+            <path d="M278 180 Q300 187 322 180" stroke="#4a8fe7" stroke-width="5" fill="none" stroke-linecap="round" />
+            <circle cx="300" cy="118" r="22" fill="#f6cfae" />
+            <path d="M278 118 C275 92 318 85 322 116 C315 104 300 99 290 106 C286 110 282 113 278 118Z" fill="#2b1b17" />
+            <circle class="girl-eye" cx="291" cy="119" r="2.6" fill="#16233b" />
+            <path class="girl-eye-happy" d="M287 121 q4 -5 8 0" stroke="#16233b" stroke-width="2" fill="none" stroke-linecap="round" />
+            <circle cx="291" cy="119" r="7" fill="none" stroke="#16233b" stroke-width="1.3" /><circle cx="307" cy="119" r="7" fill="none" stroke="#16233b" stroke-width="1.3" /><path d="M298 119 h2" stroke="#16233b" stroke-width="1.3" />
+            <path d="M286 131 q5 4 10 0" stroke="#b5533f" stroke-width="2" fill="none" stroke-linecap="round" />
+            <circle class="girl-blush" cx="283" cy="128" r="5" fill="#ee8f8f" />
+            <g class="girl-arm">
+              <path d="M292 156 L270 176" stroke="#f6cfae" stroke-width="8" stroke-linecap="round" />
+              <g class="sc-env sc-env-b" transform="translate(260 176)">
+                  <rect x="-15" y="-10" width="30" height="20" rx="3" fill="#fff" stroke="#4a8fe7" stroke-width="1.6" />
+                  <path d="M-15 -9 L0 3 L15 -9" fill="none" stroke="#4a8fe7" stroke-width="1.6" stroke-linejoin="round" />
+                  <path d="M0 7 c-2.6 -2.6 -5 -3.8 -5 -6.2 a2.5 2.5 0 0 1 5 -0.8 a2.5 2.5 0 0 1 5 0.8 c0 2.4 -2.4 3.6 -5 6.2z" fill="#1f55b5" />
+                </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+      <div class="sc-hearts" aria-hidden="true"><span>♥</span><span>♥</span><span>♥</span><span>♥</span><span>♥</span></div>
+      <div class="envelope">
+        <span class="env-back"></span>
+        <span class="env-letter"><span class="env-heart">♥</span></span>
+        <span class="env-front"></span>
+        <span class="env-flap"></span>
+        <span class="seal">💙</span>
+      </div>
+    </div>
+    <p class="intro-hint">tap to begin</p>
   </div>
 
   <main id="site" class="site" hidden>
@@ -260,7 +323,7 @@
     <video id="wishVideo" controls playsinline preload="metadata"></video>
   </div>
 
-  <script src="content.js?v=1791616870"></script>
-  <script src="script.js?v=1791616870"></script>
+  <script src="content.js?v=1791618474"></script>
+  <script src="script.js?v=1791618474"></script>
 </body>
 </html>

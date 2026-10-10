@@ -453,10 +453,12 @@
   // ---------- Video after the candles ----------
   const wishBox = $("#wishBox"), wishVid = $("#wishVideo");
   // Skipped only when there is no video, or the file is missing
-  let wishReady = !!C.wishVideo;
+  const wishList = (C.wishVideos || [C.wishVideo]).filter(Boolean);
+  let wishReady = wishList.length > 0, wishIndex = 0;
   if (wishReady) {
-    wishVid.addEventListener("error", () => (wishReady = false), { once: true });
-    wishVid.src = C.wishVideo;
+    // a missing first video means no video at all; a missing later one just ends the show
+    wishVid.addEventListener("error", () => { if (wishIndex === 0) wishReady = false; else closeWish(); });
+    wishVid.src = wishList[0];
   }
   function openWish() {
     if (!wishBox.hidden) return;
@@ -464,6 +466,7 @@
     videoPlaying = true;
     audio.pause();
     wishBox.hidden = false;
+    if (wishIndex !== 0) { wishIndex = 0; wishVid.src = wishList[0]; }
     wishVid.currentTime = 0;
     wishVid.play().catch(() => {});
   }
@@ -475,7 +478,14 @@
     if (musicBeforeVideo && !userPaused) audio.play().catch(() => {});
     $("#wishReplay").hidden = false;
   }
-  wishVid.addEventListener("ended", closeWish);
+  // when one video ends the next one starts; after the last one the window closes
+  wishVid.addEventListener("ended", () => {
+    if (wishIndex + 1 < wishList.length && !wishBox.hidden) {
+      wishIndex++;
+      wishVid.src = wishList[wishIndex];
+      wishVid.play().catch(() => {});
+    } else closeWish();
+  });
   $("#wishClose").addEventListener("click", closeWish);
   wishBox.addEventListener("click", (e) => { if (e.target === wishBox) closeWish(); });
   $("#wishReplay").addEventListener("click", openWish);

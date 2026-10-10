@@ -155,8 +155,7 @@ window.BIRTHDAY = {
   // Shown after she blows out the candles
   wishMessage: "Your wish is sent to the universe ✨ I hope every bit of it comes true.",
 
-  // Video that plays after she blows out the candles.
-  // Put the video in the /video folder with this name (use .mp4, under ~50 MB).
-  // Leave as "" for no video.
-  wishVideo: "video/wish.mp4",
+  // Videos that play after she blows out the candles, one after another, in this order.
+  // Put them in the /video folder (use .mp4, under ~50 MB each). Leave the list empty for no video.
+  wishVideos: ["video/wish.mp4", "video/wish2.mp4"],
 };

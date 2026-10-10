@@ -87,6 +87,8 @@ window.BIRTHDAY = {
     { front: "Why today matters", back: "Today the world got you. And somehow, I got lucky enough to be the one standing next to you." },
     { front: "A secret", back: "I knew I was in love with you way before I said it. I was just too nervous to say it out loud." },
     { front: "For later", back: "Save this one for the next time we fight: I'm sorry, I love you, let's get food. 🍕" },
+    { front: "Open when you miss me", back: "Close your eyes and count to three. I'm already thinking of you — I always am. Distance never stood a chance against us." },
+    { front: "My forever wish", back: "To grow old with you, laugh at the same silly things, and still hold your hand like it's the very first time." },
   ],
 
   // ---------- Photo & video gallery ----------

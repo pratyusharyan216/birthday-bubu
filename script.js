@@ -10,7 +10,7 @@
   const esc = (s = "") => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
   // ---------- Fill in content ----------
-  document.title = `Happy Birthday, ${C.name} 💖`;
+  document.title = `Happy Birthday, ${C.name} 💙`;
   document.querySelectorAll("[data-name]").forEach((n) => (n.textContent = C.name));
   $("#tagline").textContent = C.tagline;
   $("#fromName").textContent = C.from;
@@ -55,7 +55,7 @@
       $("#cdH").textContent = pad(Math.floor((t % 86400) / 3600));
       $("#cdM").textContent = pad(Math.floor((t % 3600) / 60));
       $("#cdS").textContent = pad(t % 60);
-      $("#cdLabel").textContent = `until your birthday on ${start.toLocaleDateString(undefined, { day: "numeric", month: "long" })} 💖`;
+      $("#cdLabel").textContent = `until your birthday on ${start.toLocaleDateString(undefined, { day: "numeric", month: "long" })} 💙`;
       setTimeout(tickCd, 1000);
     };
     tickCd();
@@ -104,7 +104,7 @@
     $("#cupidSub").textContent = C.cupidSubtitle || "";
     lines.forEach(() => count.appendChild(el("span", null, "♡")));
     let shot = 0, firing = false;
-    const btnLabels = C.cupidButtons && C.cupidButtons.length ? C.cupidButtons : ["Let my heart find yours 💘"];
+    const btnLabels = C.cupidButtons && C.cupidButtons.length ? C.cupidButtons : ["Let my heart find yours 💙"];
     btn.textContent = btnLabels[0];
 
     // The heart bursts into roses
@@ -172,7 +172,7 @@
     const b = el("button", "note reveal");
     b.innerHTML = `
       <div class="note-inner">
-        <div class="note-face note-front"><span class="heart">💌</span><p>${esc(n.front)}</p></div>
+        <div class="note-face note-front"><span class="heart">💙</span><p>${esc(n.front)}</p></div>
         <div class="note-face note-back">${esc(n.back)}</div>
       </div>`;
     b.addEventListener("click", () => { b.classList.toggle("flipped"); ensureMusic(); });
@@ -222,7 +222,7 @@
 
   // ---------- Floating hearts ----------
   const hearts = $(".hearts");
-  const glyphs = ["♥", "♡", "❤", "✿"];
+  const glyphs = ["♥", "♡", "♥", "✿"];
   for (let i = 0; i < 18; i++) {
     const s = el("span", null, glyphs[i % glyphs.length]);
     s.style.left = Math.random() * 100 + "%";
@@ -475,7 +475,7 @@
   const cv = $("#confetti");
   const ctx = cv.getContext("2d");
   let parts = [], running = false;
-  const colors = ["#e05a7a", "#f7c6d0", "#e8b65c", "#b8325a", "#ffffff", "#c96b9e"];
+  const colors = ["#4a8fe7", "#c3dafc", "#8ec5ff", "#1f55b5", "#ffffff", "#6f8fe0"];
   function confetti(n) {
     cv.width = innerWidth * devicePixelRatio;
     cv.height = innerHeight * devicePixelRatio;

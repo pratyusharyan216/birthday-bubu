@@ -27,7 +27,7 @@ window.BIRTHDAY = {
     "Joy of my life",
     "Adorable",
     "Lovely, inside and out",
-    "All mine 💕",
+    "All mine 💙",
   ],
 
   // Your name, for signing the letter
@@ -58,14 +58,14 @@ window.BIRTHDAY = {
   // Text on the button: first one shows before the first arrow, then it changes
   // after every arrow. The last one stays.
   cupidButtons: [
-    "Let my heart find yours 💘",
-    "Fall for me once more 💕",
-    "Another arrow, another promise 💞",
-    "Steal my heart again 💗",
-    "Love me a little more 🌹",
-    "One more piece of my heart 💓",
-    "Once more, my love 💘",
-    "Again and again, forever 💖",
+    "Let my heart find yours 💙",
+    "Fall for me once more 💙",
+    "Another arrow, another promise 💙",
+    "Steal my heart again 💙",
+    "Love me a little more 💙",
+    "One more piece of my heart 💙",
+    "Once more, my love 💙",
+    "Again and again, forever 💙",
   ],
   cupidLines: [
     "The first arrow was the day I saw you — I never stood a chance.",
@@ -79,7 +79,7 @@ window.BIRTHDAY = {
 
   // ---------- Little notes (she taps each one to open it) ----------
   notesTitle: "Whispers from my heart",
-  notesSubtitle: "Folded with love, sealed with a kiss — open them one by one 💌",
+  notesSubtitle: "Folded with love, sealed with a kiss — open them one by one 💙",
   notes: [
     { front: "Open when you need a smile", back: "Remember the way you laughed so hard you snorted? I think about it every time I'm having a bad day. You're my favourite sound." },
     { front: "Things I love about you", back: "Your kindness. The way you scrunch your nose. How you always save me the last bite. Literally everything." },
@@ -98,13 +98,13 @@ window.BIRTHDAY = {
   photosTitle: "You, through my eyes",
   photosSubtitle: "Every frame of you is my favourite view — tap to see it closer 📸",
   photos: [
-    { file: "photos/1.jpg", caption: "My girl at Victoria Memorial 🤍" },
+    { file: "photos/1.jpg", caption: "My girl at Victoria Memorial 💙" },
     { file: "photos/2.jpg", caption: "Main character energy ✨" },
     { file: "photos/3.jpg", caption: "Two beautiful views, one frame" },
     { file: "photos/4.jpg", caption: "Mirror selfie queen 📸" },
     { file: "photos/5.jpg", caption: "Kolkata looked good, you looked better" },
-    { file: "photos/6.jpg", caption: "Red looks so good on you ❤️" },
-    { file: "photos/7.jpg", caption: "Hair flip, heart skip 💓" },
+    { file: "photos/6.jpg", caption: "Red looks so good on you 💙" },
+    { file: "photos/7.jpg", caption: "Hair flip, heart skip 💙" },
   ],
 
   // ---------- Memories timeline ----------

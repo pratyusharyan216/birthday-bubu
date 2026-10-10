@@ -242,7 +242,7 @@
   if (C.photosSong && C.photosSong.file) tracks.photos = C.photosSong;
   if (C.cupidSong && C.cupidSong.file) tracks.cupid = C.cupidSong;
   const positions = {};
-  let current = null, userPaused = false, started = false, fadeTimer = null;
+  let current = null, userPaused = false, started = false, fadeTimer = null, looping = false;
 
   const setPlaying = (on) => {
     player.classList.toggle("paused", !on);
@@ -263,6 +263,7 @@
   };
   function switchTo(key) {
     if (!tracks[key] || key === current) return;
+    looping = false;
     const load = () => {
       if (current) positions[current] = audio.currentTime;
       current = key;
@@ -284,6 +285,18 @@
     if (!started || userPaused || videoPlaying || !audio.paused) return;
     audio.play().catch(() => {});
   }
+
+  // The songs are short clips that repeat: fade out just before the end and
+  // back in from the start, so the loop is soft instead of a sudden jump.
+  audio.addEventListener("timeupdate", () => {
+    if (looping || audio.paused || !audio.duration || audio.duration - audio.currentTime > 0.8) return;
+    const key = current;
+    looping = true;
+    fade(0, 600, () => {
+      if (current === key) { audio.currentTime = 0; fade(1, 900); }
+      looping = false;
+    });
+  });
 
   audio.addEventListener("play", () => setPlaying(true));
   audio.addEventListener("pause", () => setPlaying(false));
